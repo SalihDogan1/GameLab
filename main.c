@@ -3,11 +3,11 @@
 
 int main()
 {
-    printf("KÜTÜPHANE");
-    printf("MAĞAZA");
-    printf("BAKİYE YÜKLE\n");
-    printf("İNDİRİMLER\n");
-    printf("BİZE ULAŞIN\n");
+    printf("KÃœTÃœPHANE");
+    printf("MAÃAZA");
+    printf("BAKÃYE YÃœKLE\n");
+    printf("ÃNDÃRÃMLER\n");
+    printf("BÃZE ULAÃIN\n");
 
 
     return 0;
