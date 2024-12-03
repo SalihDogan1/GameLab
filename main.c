@@ -1,38 +1,71 @@
 #include <stdio.h>
 
 int main() {
-    int secim; // Kullanıcının seçim yapması için değişken tanımlandı.
     
+  int option; 
+
     do {
-        // Menü seçeneklerini yazdır
-        printf("1. KÜTÜPHANE\n");
-        printf("2. MAĞAZA\n");
-        printf("3. BAKİYE YÜKLE\n");
-        printf("4. BİZE ULAŞIN\n");
-        printf("0. ÇIKIŞ\n");
+        
+        printf("\n1. LIBRARY\n");
+        printf("2. STORE\n");
+        printf("3. ADD BALANCE\n");
+        printf("4. FRIENDS\n");
+        printf("0. LOG OUT\n");
 
         // Kullanıcıdan seçim al
-        printf("Lütfen bir seçenek seçin: ");
-        scanf("%d", &secim);
+        printf("\nPlease select an option: ");
+        scanf("%d", &option);
 
         // Seçime göre işlemler
-        if (secim == 1) {
-            printf("KÜTÜPHANE seçildi.\n");
-        } else if (secim == 2) {
-            printf("MAĞAZA seçildi.\n");
-        } else if (secim == 3) {
-            printf("BAKİYE YÜKLE seçildi.\n");
-        } else if (secim == 4) {
-            printf("BİZE ULAŞIN seçildi.\n");
-        } else if (secim == 0) {
-            printf("Çıkış yapılıyor...\n");
-        } else {
-            printf("Geçersiz bir seçim yaptınız. Lütfen tekrar deneyin.\n");
+        if (option == 1) {
+
+            printf("\nLIBRARY HAS OPENED.\n");
+
+        } else if (option == 2) {
+
+            printf("\nSTORE HAS OPENED.\n");
+
+
+        } else if (option == 3) {
+
+            int blnc;
+
+            do{
+            printf("\n1-Load Balance\n");
+            printf("2-Send Money to Someone\n");
+            printf("0-Back\n");
+
+            printf("\nPlease select an option: ");
+
+            scanf("%d", &blnc);
+
+            if(blnc == 1){
+                printf("\nBalance Loaded\n");
+            }else if(blnc == 2){
+                printf("\nmoney sent\n");
+            }else if(blnc!=0){
+                printf("\nInvalid number. Please try again.\n");
+            }
+
+
+        }while(blnc !=0);
+
+
+        } else if (option == 4) {
+
+            printf("FRIENDS HAS SHOWED.\n");
+
+        } else if(option !=0){
+
+            printf("Invalid number. Please try again.\n");
+
         }
 
-    } while (secim != 0); // Kullanıcı 0 girene kadar döngü devam eder.
+    }while (option != 0);
 
-    return 0;
+    printf("Good Bye My Friend");
+
+return 0;
 }
 
-}
+
