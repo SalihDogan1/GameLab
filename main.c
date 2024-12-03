@@ -1,9 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
-
-int main()
-{
-   #include <stdio.h>
 
 int main() {
     int secim; // Kullanıcının seçim yapması için değişken tanımlandı.
