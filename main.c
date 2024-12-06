@@ -45,6 +45,7 @@ int main() {
                 printf("\nmoney sent\n");
             }else if(blnc!=0){
                 printf("\nInvalid number. Please try again.\n");
+                printf("fuckyou");
             }
 
 
