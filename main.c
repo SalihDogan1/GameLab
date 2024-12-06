@@ -52,7 +52,40 @@ int main() {
         // Seçime göre işlemler
         if (option == 1) {
 
-            printf("\nLIBRARY HAS OPENED.\n");
+            int lbrry;
+
+    do
+    { 
+           printf("1-View my installed games\n");
+           printf("2-View uninstalled games\n");
+           printf("3-Install the game\n");
+           printf("0-Exit\n");
+           printf("Select an option\n");
+           scanf("%d",&lbrry );
+
+           if (lbrry==1)
+           {
+                printf("yüklü oyunlar görüntülendi\n");
+           }
+           else if (lbrry==2)
+           {
+            printf("yüklü olmayan oyunlar\n");
+           }
+
+           else if (lbrry==3)
+           {
+            printf("oyun yüklendi\n");
+           }
+           else if(lbrry != 0){
+            printf("invalid number\n");
+           }
+           
+        
+
+
+
+    
+    } while (lbrry!=0);
 
         } else if (option == 2) {
 
