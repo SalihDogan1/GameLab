@@ -1,6 +1,39 @@
 #include <stdio.h>
 
+struct UserInfo {
+    char username[50]; // Kullanıcı adı için bir karakter dizisi
+    char password[50]; // Şifre için bir karakter dizisi
+    int money;
+};
+
+
 int main() {
+
+
+    char* FriendsofSalih[] = { "empty", "empty", "empty", "empty"};
+    char* FriendsofAkin[] = { "empty", "empty", "empty", "empty"};
+    char* FriendsofEmirhan[] = { "empty", "empty", "empty", "empty"};
+    char* FriendsofBaris[] = { "empty", "empty", "empty", "empty"};
+    char* FriendsofYavuzhan[] = { "empty", "empty", "empty", "empty"};
+
+    char* Games[] = { "LOL","ROCKET LEAGUE","FIFA","COUNTER STRIKE"};
+    int* GamesPrices[] = { 1,2,3,4}; // fiyatlari yukaridakiler ile sirasiyla
+
+    char* GamesofSalih[] = { "empty", "empty", "empty", "empty"};
+    char* GamesofAkin[] = { "empty", "empty", "empty", "empty"};
+    char* GamesofEmirhan[] = { "empty", "empty", "empty", "empty"};
+    char* GamesofBaris[] = { "empty", "empty", "empty", "empty"};
+    char* GamesofYavuzhan[] = { "empty", "empty", "empty", "empty"};
+
+    struct UserInfo salih = { "slh", "123", 0 };
+    struct UserInfo emirhan = { "emrhn", "234", 0 };
+    struct UserInfo akin = { "akn", "345", 0 };
+    struct UserInfo baris = { "brs", "456", 0 };
+    struct UserInfo yavuzhan = { "yvzhn", "567", 0 };
+
+
+
+	
     
   int option; 
 
