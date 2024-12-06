@@ -53,7 +53,37 @@ int main() {
 
         } else if (option == 4) {
 
-            printf("FRIENDS HAS SHOWED.\n");
+
+            int frnd;
+	do
+	{
+		printf("Friends\n");
+		printf("1-Add Friends\n");
+		printf("2-Delete Friends\n");
+		printf("0-Turn Back\n");
+		printf("Select an opiton\n");
+		scanf("%d",&frnd);
+		
+		if(frnd==1)
+		{
+			printf("Add Friends\n");
+			printf("Enter your friend's nickname\n");
+			
+		}
+		else if(frnd==2)
+		{
+			printf("Delete Friends\n");
+			printf("Enter your friend's name\n");
+			
+		}
+		else if(frnd!=0)
+		{
+			printf("invalid number\n");
+		}
+		
+		
+	}
+	while(frnd!=0);
 
         } else if(option !=0){
 
