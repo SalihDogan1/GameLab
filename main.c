@@ -120,29 +120,68 @@ int main() {
         } else if (option == 4) {
 
 
-            int frnd;
+           int frnd;
 	do
 	{
 		printf("Friends\n");
 		printf("1-Add Friends\n");
 		printf("2-Delete Friends\n");
+		printf("3-View my friend\n");
 		printf("0-Turn Back\n");
 		printf("Select an opiton\n");
 		scanf("%d",&frnd);
 		
-		if(frnd==1)
-		{
+		switch(frnd){
+		
+		
+		case 1:
+			{
+			int i=0;
+		char frndname[30];
 			printf("Add Friends\n");
 			printf("Enter your friend's nickname\n");
+			scanf("%s",&frndname);
+			for(i; i < 4; i++)
+			{
+			if(FriendsofBaris[i]=="empty")
+				{
+					FriendsofBaris[i]=frndname;			
+				}
+				
+				int j;
+			for(j=0;j<4;j++)
+			{
+				printf("\n%s",FriendsofBaris[j]);
+			}
+			}
 			
-		}
-		else if(frnd==2)
-		{
+			
+		}break;
+			
+			
+		case 2:
+		
 			printf("Delete Friends\n");
 			printf("Enter your friend's name\n");
 			
+		break;
+		
+		case 3:
+		{
+			
+			int j;
+			for(j=0;j<4;j++)
+			{
+				printf("%s",FriendsofBaris[j]);
+			}
 		}
-		else if(frnd!=0)
+		break;	
+			
+			
+			
+		}
+		
+		if(frnd!=0&&frnd!=1&&frnd!=2&&frnd!=3)
 		{
 			printf("invalid number\n");
 		}
@@ -150,15 +189,6 @@ int main() {
 		
 	}
 	while(frnd!=0);
-
-        } else if(option !=0){
-
-            printf("Invalid number. Please try again.\n");
-
-        }
-
-    }while (option != 0);
-
     printf("Good Bye My Friend");
 
 return 0;
