@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <string.h>
 struct UserInfo {
     char username[50]; // Kullanıcı adı için bir karakter dizisi
     char password[50]; // Şifre için bir karakter dizisi
