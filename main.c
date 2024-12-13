@@ -30,7 +30,24 @@ int main() {
     struct UserInfo akin = { "akn", "345", 0 };
     struct UserInfo baris = { "brs", "456", 0 };
     struct UserInfo yavuzhan = { "yvzhn", "567", 0 };
-
+        char username  [50];
+	char password  [50];
+	
+		
+		do
+		{
+printf("Username: ");
+scanf("%s", &username);
+printf("Password: ");
+scanf("%s", &password);
+if(strcmp(username, "user") == 0 && strcmp(password, "123") == 0){
+printf("Log in succesful");
+break;
+	  
+}
+printf("Invalid username or password.\n"); 			
+}
+while(strcmp(username, "user") != 0 || strcmp(password, "123") != 0);
 
 
 	
