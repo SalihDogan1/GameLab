@@ -7,6 +7,10 @@ int main() {
     int GamesPrices[] = { 1, 2, 3, 4 }; // fiyatlari yukaridakiler ile sirasiyla
     char GamesofUser[4][30] = { "empty", "empty", "empty", "empty" };
 
+    char InsGames[4][30] = { "empty", "empty", "empty", "empty" };
+    char UninsGames[4][30] = { "empty", "empty", "empty", "empty" };
+    char BoughtGames[4][30] = { "empty", "empty", "empty", "empty" };
+
     char username[50];
     char password[50];
 
