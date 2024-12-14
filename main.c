@@ -4,12 +4,14 @@
 int main() {
     char FriendsofUser[4][30] = { "empty", "empty", "empty", "empty" };
     char* Games[] = { "LOL", "ROCKET LEAGUE", "FIFA", "COUNTER STRIKE" };
+
     int GamesPrices[] = { 1, 2, 3, 4 }; // fiyatlari yukaridakiler ile sirasiyla
     char GamesofUser[4][30] = { "empty", "empty", "empty", "empty" };
 
-    char InsGames[4][30] = { "empty", "empty", "empty", "empty" };
+    char InsGames[4][30] = { "LOL", "ROCKET LEAGUE", "FIFA", "empty" };
     char UninsGames[4][30] = { "empty", "empty", "empty", "empty" };
-    char BoughtGames[4][30] = { "empty", "empty", "empty", "empty" };
+    char BoughtGames[4][30] = { "LOL", "ROCKET LEAGUE", "FIFA", "COUNTER STRIKE" };
+
 
     char username[50];
     char password[50];
@@ -52,8 +54,30 @@ int main() {
 
                 if (lbrry == 1) {
                     printf("----------------------------\nInstalled games displayed.\n");
+
+                        for (int i = 0; i < 4; i++) {
+                            printf("%d: %s\n", i + 1, InsGames[i]);
+                        }
+
+                        printf("Select a game to open: ");
+            int opengame;
+                scanf("%d", &opengame);
+
+                // Kullanıcının seçtiği indeksin geçerli olup olmadığını kontrol et
+                if (opengame >= 1 && opengame <= 4) {
+                // Oyun adı boş değilse oyunu aç
+                if (strcmp(InsGames[opengame - 1], "empty") != 0) {
+                        printf("----------------------------\n%s game opened.\n", InsGames[opengame - 1]);
+                } else {
+                        printf("----------------------------\nNo game is installed in this slot.\n");
+                }
+                } else {
+                        printf("----------------------------\nInvalid selection.\n");
+                }   
+
                 } else if (lbrry == 2) {
                     printf("----------------------------\nUninstalled games displayed.\n");
+
                 } else if (lbrry == 3) {
                     printf("\nGame installed.\n");
                 } else if (lbrry != 0) {
