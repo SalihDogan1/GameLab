@@ -88,6 +88,115 @@ int main() {
         } else if (option == 2) {
             printf("----------------------------\nSTORE HAS OPENED.\n");
 
+#include <stdio.h>
+
+int main(int argc, const char * argv[]) {
+    char* Games[] = { "LOL","ROCKET LEAGUE","FIFA","COUNTER STRIKE"};
+    int blnc;
+
+            do{
+            printf("\n1-View The Game Catalog\n");
+            printf("2-Buy Game\n");
+            printf("3-Buy With Discount Code\n");
+            printf("0-Back\n");
+
+            printf("\nPlease select an option: ");
+
+            scanf("%d", &blnc);
+
+                if(blnc == 1){
+                    int catolog;
+                    do {
+                        printf("\n***WELCOME TO THE GAME CATOLOG***\n");
+                        printf("You can see the current and upcoming games and see the details by entering the number.\n");
+                        printf("\n1-League Of Legends");
+                        printf("\n2-Rocket League");
+                        printf("\n3-FIFA");
+                        printf("\n4-Counter-Strike");
+                        printf("\n5-GTA VII (soon)");
+                        printf("\n6-DOTA 3 (soon)");
+                        printf("\n7-Metin3 (soon)");
+                        printf("\n0-Back");
+                        
+                        
+                        printf("\nPlease select an option: ");
+                        scanf("%d",&catolog);
+                        
+                        if (catolog == 1) {
+                            printf("\nLeague of Legends is a multiplayer online battle arena (MOBA) game in which the player controls a character 'champion' with a set of unique abilities from an isometric perspective. As of 2024, there are 168 champions available to play.Over the course of a match, champions gain levels by accruing experience points (XP) through killing enemies. Items can be acquired to increase champions' strength, and are bought with gold, which players accrue passively over time and earn actively by defeating the opposing team's minions, champions, or defensive structures.In the main game mode, Summoner's Rift, items are purchased through a shop menu available to players only when their champion is in the team's base. Each match is discrete; levels and items do not transfer from one match to another.\n");
+                        }
+                        else if (catolog == 2){
+                            printf("\nRocket League is a fantastical sport-based video game, developed by Psyonix. Many would say it’s like “soccer with cars”. It features a competitive game mode based on teamwork and outmaneuvering opponents. Rocket League is rated E for Everyone. Extremely similar to the traditional sport of Soccer, teams made up of three players will work together to advance the ball down the field and score goals in their opponents’ net. Each team starts on opposite sides of the field (either Blue or Orange). The ball starts in the middle of the field. After a countdown, the timer begins, and players race to be the first to hit the ball with their car. Once the ball is in play, the five minute countdown starts, only stopping when a goal is scored.A team wins the match by scoring more goals than their opponent within the five minute time limit. Tied games will be sent to Overtime, where the first team to score will be the winner of the game.\n");
+                        }
+                        else if (catolog == 3){
+                            printf("\nFor more than 20 years, the legendary FIFA series from EA SPORTS has been the biggest sports game in the world today. Bringing the Game of the World to life, FIFA lets you play with the biggest leagues, clubs and footballers in world football at an incredible level of detail and realism. Whether you're building your dream squad in FIFA Ultimate Team, managing your favorite club in Career Mode, getting back to street football with EA SPORTS VOLTA FOOTBALL, or challenging a friend in Center Stage Mode, the FIFA series makes it possible to play the Game of the World your way.\n");
+                        }
+                        else if (catolog == 4){
+                            printf("\nCounter-Strike is an objective-based, multiplayer tactical first-person shooter. Two opposing teams—the Terrorists and the Counter Terrorists—compete in game modes to complete objectives, such as securing a location to plant or defuse a bomb and rescuing or guarding hostages. At the end of each round, players are rewarded based on their individual performance with in-game currency to spend on more powerful weapons in subsequent rounds. Winning rounds results in more money than losing and completing objectives such as killing enemy players gives cash bonuses. Uncooperative actions, such as killing teammates, result in a penalty.\n");
+                        }
+                        else if (catolog == 5){
+                            printf("\n***COMING SOON***\n");
+                        }
+                        else if (catolog == 6){
+                            printf("\n***COMING SOON***\n");
+                        }
+                        else if (catolog == 7){
+                            printf("\n***COMING SOON***\n");
+                        }
+                        
+                    }
+                    while (catolog != 0 );
+                }
+                
+                
+              else if(blnc == 2){
+                int buy,oyun1,oyun2;
+                do {
+                    printf("\n1-Buy it for yourself");
+                    printf("\n2-Buy as a gift");
+                    printf("\n0-Back");
+                    printf("\nChoose an option: ");
+                    scanf("%d",&buy);
+                    if (buy == 1) {
+                        printf("\nChoose a game\n");
+                        printf("\n1-League Of Legends");
+                        printf("\n2-Rocket League");
+                        printf("\n3-FIFA");
+                        printf("\n4-Counter-Strike");
+                        printf("\n0-Back");
+                        printf("\nChoose an option: ");
+                        scanf("%d",&oyun1);
+
+                    }else if (buy == 2){
+                        printf("Choose a game");
+                        printf("\n1-League Of Legends");
+                        printf("\n2-Rocket League");
+                        printf("\n3-FIFA");
+                        printf("\n4-Counter-Strike");
+                        printf("\n0-Back");
+                        printf("\nChoose an option: ");
+                        scanf("%d",&oyun2);
+
+                    }
+                    
+                }while (buy !=0);
+             
+            }
+            else if (blnc == 3){
+                int code = 0;
+                printf("\nEnter the discount code:%d",code);
+                scanf("%d",&code);
+            }
+            
+            else if(blnc!=0){
+                printf("\nInvalid number. Please try again.\n");
+            }
+
+
+        }while(blnc !=0);
+}
+
+
         } else if (option == 3) {
             int blnc;
 
