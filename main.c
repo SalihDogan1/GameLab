@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#define GAME_COUNT 4
 
 // Oyunların adı, fiyatları ve yüklenme durumu
 char *games[] = { "LOL", "ROCKET LEAGUE", "FIFA", "COUNTER STRIKE" }; // Oyunlarımızın bulunduğu dizi
