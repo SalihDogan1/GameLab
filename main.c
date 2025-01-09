@@ -1,221 +1,166 @@
 #include <stdio.h>
 #include <string.h>
 
+#define GAME_COUNT 4
+
+// Oyunların adı, fiyatları ve yüklenme durumu
+char *games[] = { "LOL", "ROCKET LEAGUE", "FIFA", "COUNTER STRIKE" }; // Oyunlarımızın bulunduğu dizi
+int gamePrices[] = { 10, 15, 20, 25 }; // oyunlarımızın sırasıyla ücretini tutan dizi
+char FriendsofUser[4][30] = { "empty", "empty", "empty", "empty" }; // kullanıcının arkadaşlarını tutan dizi
+// Kullanıcı bilgileri ve oyun listeleri
+char installedGames[4][30] = { "empty", "empty", "empty", "empty" }; // yüklü oyunları görüntüleyen dizi
+char uninstalledGames[4][30] = { "empty", "empty", "empty", "empty" }; // Yüklü olmayan oyunları görüntüleyen dizi
+char purchasedGames[4][30] = { "empty", "empty", "empty", "empty" }; // Satın alınan oyunları görüntüleyen dizi
+
+char username[50]; // Kullanıcı adı değişkeni
+char password[50]; // Şifre değişkeni
+int balance = 0; // bakiye değişkeni
+
+
+
 int main() {
-    char FriendsofUser[4][30] = { "empty", "empty", "empty", "empty" };
-    char* Games[] = { "LOL", "ROCKET LEAGUE", "FIFA", "COUNTER STRIKE" };
+    //--------------- Kullanıcı girişi
+    do { // eğer kullanıcı adı ve şifre yanlışsa do while sayesinde sürekli tekrar kullanıcıdan bilgilerini isteyebiliriz.
 
-    int GamesPrices[] = { 1, 2, 3, 4 }; // fiyatlari yukaridakiler ile sirasiyla
-    char GamesofUser[4][30] = { "empty", "empty", "empty", "empty" };
-
-    char InsGames[4][30] = { "LOL", "ROCKET LEAGUE", "FIFA", "empty" };
-    char UninsGames[4][30] = { "empty", "empty", "empty", "empty" };
-    char BoughtGames[4][30] = { "LOL", "ROCKET LEAGUE", "FIFA", "COUNTER STRIKE" };
-
-
-    char username[50];
-    char password[50];
-
-    do {
         printf("----------------------------\nUsername: ");
-        scanf("%s", username);
+        scanf("%s", username); // kullanıcıdan username istedik
         printf("Password: ");
-        scanf("%s", password);
+        scanf("%s", password);// kullanıcıdan şifre istedik
 
-        if (strcmp(username, "user") == 0 && strcmp(password, "123") == 0) {
-            printf("----------------------------\nLog in successful\n");
-            break;
+        if (strcmp(username, "user") == 0 && strcmp(password, "123") == 0) { // eğer kullanıcı adı ve şifre doğru ise
+            printf("----------------------------\nLog in successful\n"); // kullanıcıyı başarıyla giriş yaptığını bilgilendir.
+            break; // döngüyü kır ve while dan sonraki adımlara başla
         }
-        printf("----------------------------\nInvalid username or password.\n");
-    } while (1);
+        printf("----------------------------\nInvalid username or password.\n");// yanlış olduğunu kullanıcıya bildir
+    } while (1); // döngünün içine 1 yazılırsa, break ile karşılaşmadığı sürece döngünün devam etmesini sağlar
 
-    int option;
+    int option; // opsiyon değişkeni atandı
 
-    do {
-        printf("----------------------------\n1. LIBRARY\n");
+    // Ana menü
+    do { // ana menü içerisindeki bilgilere girip geri döndüğümüzde tekrar ana menüdeki seçeneklerle karşılaşmak için do while kullanırız
+        printf("----------------------------\n1. LIBRARY\n"); // -----------Arayüz
         printf("2. STORE\n");
         printf("3. ADD BALANCE\n");
         printf("4. FRIENDS\n");
         printf("0. LOG OUT\n");
 
-        printf("----------------------------\nPlease select an option: ");
-        scanf("%d", &option);
+        printf("----------------------------\nPlease select an option: "); // kullanıcıdan opsiyon girmesini istedik
+        scanf("%d", &option); // kullanıcıdan aldığımız değeri option değişkenine attık
 
-        if (option == 1) {
-            int lbrry;
+        if (option == 1) { // Eğer 1 e eşit ise library menüsüne girer
 
-            do {
-                printf("----------------------------\n1-View my installed games\n");
-                printf("2-View uninstalled games\n");
-                printf("3-Install the game\n");
-                printf("0-Exit\n");
+            int lbrry; // lbbrry değişkenine oluşturduk
+
+            do { // eper içeride işlem yaparsak geriye döndüğümüzde yeniden burayla karşılaşmak istediğimiz için do kullandık
+
+                printf("----------------------------\n1-View my installed games\n"); // yüklü olan oyunları görüntüle.
+                printf("2-View uninstalled games\n"); // yüklü olmayanları görüntüle
+                printf("3-Install the game\n");// oyun yükleyici
+                printf("0-Exit\n"); // ilk do while döngüsünden çıkarıp bir önceki menüye dönmeyi sağlayacak seçenek
                 printf("----------------------------\nSelect an option: ");
-                scanf("%d", &lbrry);
+                scanf("%d", &lbrry); // kullanıcıdan bir seçim istiyoruz lbbry değişkenine atayacağız sayı ile.
 
-                if (lbrry == 1) {
-                    printf("----------------------------\nInstalled games displayed.\n");
+                if (lbrry == 1) { // seçenek bir ise yüklü oyunlara girdi. ve oyunlar listelenecek.
 
-                        for (int i = 0; i < 4; i++) {
-                            printf("%d: %s\n", i + 1, InsGames[i]);
+                    printf("----------------------------\nInstalled games:\n"); // yüklü oyunların açıldığına dair bilgilendirme yazısı
+                    for (int i = 0; i < 4; i++) { // toplam 4 adet oyuna sahip olduğumuz için 4 elemanlı dizi için tarama yapar
+                        if (strcmp(installedGames[i], "empty") != 0) { //eğer dizinin i'ninci elemanı empty değil ise
+                            printf("%d: %s\n", i + 1, installedGames[i]); //o oyunu ekrana yazdır. (en başta dizinin hepsi empty olduğu için hiçbir şey yazdırmaz)
+                         }
+                    }
+                } else if (lbrry == 2) { // yüklenmemiş oyunlar seçilirse
+
+                    printf("----------------------------\nUninstalled games:\n");
+                    for (int i = 0; i < 4; i++) { // yine 4 kere döndürülür çünkü maksimum 4 oyun olabilir
+                        if (strcmp(uninstalledGames[i], "empty") != 0) { // eğer empty değil ise
+                            printf("%d: %s\n", i + 1, uninstalledGames[i]); // yüklenmeyen oyun varsa yazdırır.
+                           // (eğer oyun satın alındıysa burada gözükür. en başta bu dizi boştur. Eğer mağazadan oyun satın alındıysa buraya gelir)
                         }
-
-                        printf("Select a game to open: ");
-            int opengame;
-                scanf("%d", &opengame);
-
-                // Kullanıcının seçtiği indeksin geçerli olup olmadığını kontrol et
-                if (opengame >= 1 && opengame <= 4) {
-                // Oyun adı boş değilse oyunu aç
-                if (strcmp(InsGames[opengame - 1], "empty") != 0) {
-                        printf("----------------------------\n%s game opened.\n", InsGames[opengame - 1]);
-                } else {
-                        printf("----------------------------\nNo game is installed in this slot.\n");
-                }
-                } else {
-                        printf("----------------------------\nInvalid selection.\n");
-                }   
-
-                } else if (lbrry == 2) {
-                    printf("----------------------------\nUninstalled games displayed.\n");
-
-                } else if (lbrry == 3) {
-                    printf("\nGame installed.\n");
+                    }
+                } else if (lbrry == 3) { // satın alınan oyunlar gösterilir ve yükleme işlemi burada gerçekleşir
+                    // Oyun yükleme
+                    int installOption; // seçim değişkeni alınır
+                    printf("----------------------------\nSelect a game to install:\n");
+                    for (int i = 0; i < 4; i++) {
+                        if (strcmp(uninstalledGames[i], "empty") != 0) { // satın alınan ve yüklenmeyen oyunlar listelenir.
+                            printf("%d: %s\n", i + 1, uninstalledGames[i]);
+                        }
+                    }
+                    printf("Select a game to install: "); // kullanıcıdan yukarıda yazdırılan oyunlardan birisini seçmesi istenir
+                    scanf("%d", &installOption); // oyunun satır numarası kullanıcıya sorulur.
+                    if (installOption >= 1 && installOption <= 4 && strcmp(uninstalledGames[installOption - 1], "empty") != 0) { // seçim 1 ve 4 ün arasında ve dizi 0 dan başladığı için installOptionu 1 azalttık
+                        // Yükleme işlemi
+                        strcpy(installedGames[installOption - 1], uninstalledGames[installOption - 1]); // Yüklü olmayan oyunlardaki bu oyunu artık yüklü oyunlara aktarır
+                        strcpy(uninstalledGames[installOption - 1], "empty"); // ve artık oyun yüklü olduğu için yüklü olmayan kısımdan siler.
+                        printf("Game installed successfully.\n");
+                    } else {
+                        printf("Invalid selection.\n"); // geçersiz işlem
+                    }
                 } else if (lbrry != 0) {
                     printf("----------------------------\nInvalid number.\n");
                 }
             } while (lbrry != 0);
 
-        } else if (option == 2) {
-            printf("----------------------------\nSTORE HAS OPENED.\n");
+        } else if (option == 2) { // 2. opsiyon seçildiyse mağazaya girer
 
-#include <stdio.h>
-
-int main(int argc, const char * argv[]) {
-    char* Games[] = { "LOL","ROCKET LEAGUE","FIFA","COUNTER STRIKE"};
-    int blnc;
-
-            do{
-            printf("\n1-View The Game Catalog\n");
-            printf("2-Buy Game\n");
-            printf("3-Buy With Discount Code\n");
-            printf("0-Back\n");
-
-            printf("\nPlease select an option: ");
-
-            scanf("%d", &blnc);
-
-                if(blnc == 1){
-                    int catolog;
-                    do {
-                        printf("\n***WELCOME TO THE GAME CATOLOG***\n");
-                        printf("You can see the current and upcoming games and see the details by entering the number.\n");
-                        printf("\n1-League Of Legends");
-                        printf("\n2-Rocket League");
-                        printf("\n3-FIFA");
-                        printf("\n4-Counter-Strike");
-                        printf("\n5-GTA VII (soon)");
-                        printf("\n6-DOTA 3 (soon)");
-                        printf("\n7-Metin3 (soon)");
-                        printf("\n0-Back");
-                        
-                        
-                        printf("\nPlease select an option: ");
-                        scanf("%d",&catolog);
-                        
-                        if (catolog == 1) {
-                            printf("\nLeague of Legends is a multiplayer online battle arena (MOBA) game in which the player controls a character 'champion' with a set of unique abilities from an isometric perspective. As of 2024, there are 168 champions available to play.Over the course of a match, champions gain levels by accruing experience points (XP) through killing enemies. Items can be acquired to increase champions' strength, and are bought with gold, which players accrue passively over time and earn actively by defeating the opposing team's minions, champions, or defensive structures.In the main game mode, Summoner's Rift, items are purchased through a shop menu available to players only when their champion is in the team's base. Each match is discrete; levels and items do not transfer from one match to another.\n");
-                        }
-                        else if (catolog == 2){
-                            printf("\nRocket League is a fantastical sport-based video game, developed by Psyonix. Many would say it’s like “soccer with cars”. It features a competitive game mode based on teamwork and outmaneuvering opponents. Rocket League is rated E for Everyone. Extremely similar to the traditional sport of Soccer, teams made up of three players will work together to advance the ball down the field and score goals in their opponents’ net. Each team starts on opposite sides of the field (either Blue or Orange). The ball starts in the middle of the field. After a countdown, the timer begins, and players race to be the first to hit the ball with their car. Once the ball is in play, the five minute countdown starts, only stopping when a goal is scored.A team wins the match by scoring more goals than their opponent within the five minute time limit. Tied games will be sent to Overtime, where the first team to score will be the winner of the game.\n");
-                        }
-                        else if (catolog == 3){
-                            printf("\nFor more than 20 years, the legendary FIFA series from EA SPORTS has been the biggest sports game in the world today. Bringing the Game of the World to life, FIFA lets you play with the biggest leagues, clubs and footballers in world football at an incredible level of detail and realism. Whether you're building your dream squad in FIFA Ultimate Team, managing your favorite club in Career Mode, getting back to street football with EA SPORTS VOLTA FOOTBALL, or challenging a friend in Center Stage Mode, the FIFA series makes it possible to play the Game of the World your way.\n");
-                        }
-                        else if (catolog == 4){
-                            printf("\nCounter-Strike is an objective-based, multiplayer tactical first-person shooter. Two opposing teams—the Terrorists and the Counter Terrorists—compete in game modes to complete objectives, such as securing a location to plant or defuse a bomb and rescuing or guarding hostages. At the end of each round, players are rewarded based on their individual performance with in-game currency to spend on more powerful weapons in subsequent rounds. Winning rounds results in more money than losing and completing objectives such as killing enemy players gives cash bonuses. Uncooperative actions, such as killing teammates, result in a penalty.\n");
-                        }
-                        else if (catolog == 5){
-                            printf("\n***COMING SOON***\n");
-                        }
-                        else if (catolog == 6){
-                            printf("\n***COMING SOON***\n");
-                        }
-                        else if (catolog == 7){
-                            printf("\n***COMING SOON***\n");
-                        }
-                        
-                    }
-                    while (catolog != 0 );
-                }
-                
-                
-              else if(blnc == 2){
-                int buy,oyun1,oyun2;
-                do {
-                    printf("\n1-Buy it for yourself");
-                    printf("\n2-Buy as a gift");
-                    printf("\n0-Back");
-                    printf("\nChoose an option: ");
-                    scanf("%d",&buy);
-                    if (buy == 1) {
-                        printf("\nChoose a game\n");
-                        printf("\n1-League Of Legends");
-                        printf("\n2-Rocket League");
-                        printf("\n3-FIFA");
-                        printf("\n4-Counter-Strike");
-                        printf("\n0-Back");
-                        printf("\nChoose an option: ");
-                        scanf("%d",&oyun1);
-
-                    }else if (buy == 2){
-                        printf("Choose a game");
-                        printf("\n1-League Of Legends");
-                        printf("\n2-Rocket League");
-                        printf("\n3-FIFA");
-                        printf("\n4-Counter-Strike");
-                        printf("\n0-Back");
-                        printf("\nChoose an option: ");
-                        scanf("%d",&oyun2);
-
-                    }
-                    
-                }while (buy !=0);
-             
-            }
-            else if (blnc == 3){
-                int code = 0;
-                printf("\nEnter the discount code:%d",code);
-                scanf("%d",&code);
-            }
-            
-            else if(blnc!=0){
-                printf("\nInvalid number. Please try again.\n");
-            }
-
-
-        }while(blnc !=0);
-}
-
-
-        } else if (option == 3) {
-            int blnc;
-
+            int storeOption; // mağazada sekmesindeki seçim numarasıdır.
             do {
-                printf("----------------------------\n1-Load Balance\n");
-                printf("2-Send Money to Someone\n");
+                printf("----------------------------\nSTORE\n"); // sadece oyun alma ve geriye dönme opsiyonu içerir
+                printf("1-Buy a Game\n");
                 printf("0-Back\n");
 
-                printf("----------------------------\nPlease select an option: ");
-                scanf("%d", &blnc);
+                printf("----------------------------\nSelect an option: ");
+                scanf("%d", &storeOption); // kullanıcıdan seçimi istenir
 
-                if (blnc == 1) {
-                    printf("----------------------------\nBalance Loaded\n");
-                } else if (blnc == 2) {
-                    printf("----------------------------\nMoney sent.\n");
-                } else if (blnc != 0) {
-                    printf("----------------------------\nInvalid number. Please try again.\n");
+                if (storeOption == 1) { // eğer 1 i seçtiyse kullanıcı oyun alacaktır.
+
+                    int buyOption; // hangi oyunu satın alacağını tutan değişkendir.
+                    char discountCode[30]; // indirim kodunun tutulduğu değişkendir. indirim kodunu aşağıda ferhatucar100 olarak alacağız.
+                    printf("----------------------------\nSelect a game to buy:\n"); // oyun seçmesi için kullanıcı bilgilendirilir
+                    for (int i = 0; i < 4; i++) {
+                        if (strcmp(purchasedGames[i], "empty") == 0) {
+                            printf("%d: %s - Price: %d\n", i + 1, games[i], gamePrices[i]); // satın alınabilecek oyunlar yazdırılır.
+                        }
+                    }
+
+                    printf("Enter your choice: ");
+                    scanf("%d", &buyOption); // hangi oyunu alacağı istenir.
+
+                    if (buyOption >= 1 && buyOption <= 4 && strcmp(purchasedGames[buyOption - 1], "empty") == 0) { // 1 ve 4 arasında seçim yaparsa ve boş değil ise
+                        // İndirim kodu
+                        printf("Enter discount code (if any): ");
+                        scanf("%s", discountCode); // indirim kodu varsa istenir.
+
+                        int finalPrice = gamePrices[buyOption - 1]; // final price adında bir yeni bir ücret değişkenine oyunun eski ücreti atanır.
+                        if (strcmp(discountCode, "ferhatucar100") == 0) { // eğer indirim kodu farhatucar100 ise
+                            finalPrice = 0;  // fiyatı sıfırla
+                            printf("Discount applied! The game is now free.\n");
+                        }
+
+                        // Bakiye kontrolü
+                        if (balance >= finalPrice) { // şu an ki bakiye en son olan ücretten büyük ise işlem gerçekleşir. Eğer indirim kodu yanlış olsaydı finalprice, gameprice dizindeki ile aynı olacaktı
+                            balance -= finalPrice; // bakiyeden ücret çıkarılır
+                            strcpy(purchasedGames[buyOption - 1], games[buyOption - 1]); // oyunlar listesindeki oyun, satın alınanlar dizisine eklenir.
+                            strcpy(uninstalledGames[buyOption - 1], games[buyOption - 1]); //aynı zamanda uninstalled dizisine de eklenir.
+                            printf("You have successfully bought %s for %d credits.\n", games[buyOption - 1], finalPrice); // başarıyla oyunun kaç paraya alındığını yazdırır
+                        } else {
+                            printf("Insufficient balance to buy %s.\n", games[buyOption - 1]); // para yetmiyorsa bildirim verir
+                        }
+                    } else {
+                        printf("Invalid selection.\n"); // geçersiz seçim sayısı
+                    }
+                } else if (storeOption != 0) {
+                    printf("Invalid number.\n");
                 }
-            } while (blnc != 0);
+            } while (storeOption != 0);// eğer 0 seçildiyse mağazadan önceki sekme olan anamenüye döner.
+
+        } else if (option == 3) { // 3 seçildiyse bakiye yükleme işlemi yapılır
+
+            int amount; // miktar değişkeni
+            printf("----------------------------\nEnter amount to add: ");
+            scanf("%d", &amount); // kullanıcıdan ne kadar yükleneceği bilgisini alır
+            balance += amount; // mevcut bakiyenin üstüne ekler
+            printf("Balance updated. New balance: %d\n", balance);
 
         } else if (option == 4) {
             int frnd;
@@ -227,25 +172,25 @@ int main(int argc, const char * argv[]) {
                 printf("3-View my friends\n");
                 printf("0-Turn Back\n");
                 printf("Select an option: ");
-                scanf("%d", &frnd);
+                scanf("%d", &frnd); // kullanıcıdan hangi işlemi yapacağı sorulur
 
                 switch (frnd) {
-                    case 1: {
+                    case 1: { // 1 e basarsa arkadaş ekleyecektir
                         int i;
                         char frndname[30];
                         printf("----------------------------\nAdd Friends\n");
                         printf("----------------------------\nEnter your friend's nickname: ");
-                        scanf("%s", frndname);
+                        scanf("%s", frndname); // arkadaşının ismi sorulur
 
                         for (i = 0; i < 4; i++) {
-                            if (strcmp(FriendsofUser[i], "empty") == 0) {
-                                strcpy(FriendsofUser[i], frndname);
+                            if (strcmp(FriendsofUser[i], "empty") == 0) { // döngüye girer ve empty olan elemanı arar
+                                strcpy(FriendsofUser[i], frndname); // eğer dizi elemanı empty ise onu kullanıcının arkadaşlarına ekler
                                 printf("----------------------------\nFriend added successfully.\n");
-                                break;
+                                break; // ilk arkadaşı ekledikten sonra diğer arkadaşlarda empty olduğu için doğrudan döngüden break ile çıkarılır ki diğerlerinin hepsini aynı arkadaş yapmasın
                             }
                         }
                         if (i == 4) {
-                            printf("----------------------------\nFriend list is full.\n");
+                            printf("----------------------------\nFriend list is full.\n"); // empty değer bulamazsa liste fuldür
                         }
                     } break;
 
@@ -253,32 +198,32 @@ int main(int argc, const char * argv[]) {
                         char frndname[30];
                         printf("----------------------------\nDelete Friends\n");
                         printf("----------------------------\nEnter your friend's name: ");
-                        scanf("%s", frndname);
+                        scanf("%s", frndname); // silinecek arkadaşın ismi istenir.
 
                         int found = 0;
                         for (int i = 0; i < 4; i++) {
-                            if (strcmp(FriendsofUser[i], frndname) == 0) {
-                                strcpy(FriendsofUser[i], "empty");
+                            if (strcmp(FriendsofUser[i], frndname) == 0) { // arkadaş ismi dizideki elemanlardan biri ile eşleşirse
+                                strcpy(FriendsofUser[i], "empty"); // eşleşen elemanı artık empty yap çünkü silindi
                                 printf("----------------------------\nFriend deleted successfully.\n");
                                 found = 1;
-                                break;
+                                break; // silme işlemi diğer arkadaşlara sekmesin diye direk döngüden çıkılmasını sağlar
                             }
                         }
                         if (!found) {
-                            printf("----------------------------\nFriend not found.\n");
+                            printf("----------------------------\nFriend not found.\n"); // eğer isim yanlış girilirse öyle bir arkadaş yoktur bildirisi
                         }
                     } break;
 
                     case 3: {
                         printf("----------------------------\n\nYour friends:\n");
                         for (int i = 0; i < 4; i++) {
-                            printf("%d: %s\n", i + 1, FriendsofUser[i]);
+                            printf("%d: %s\n", i + 1, FriendsofUser[i]); // kullanıcının arkadaş listesini listeler
                         }
                     } break;
 
                     default: {
                         if (frnd != 0) {
-                            printf("----------------------------\nInvalid number. Try again.\n");
+                            printf("----------------------------\nInvalid number. Try again.\n"); // geçersin işlem numarası
                         }
                     }
                 }
@@ -286,6 +231,6 @@ int main(int argc, const char * argv[]) {
         }
     } while (option != 0);
 
-    printf("----------------------------\nLogged out successfully.\n");
+    printf("----------------------------\nLogged out successfully.\n"); // başarıyla uygulamadan çıkıldı bildirimi
     return 0;
 }
