@@ -1,5 +1,4 @@
 # GameLab
-Digital Game Platform
 
 # Digital Game Platform Console Version
 
@@ -60,4 +59,4 @@ This project is a **simplified console version of a digital game platform**, des
 
 - This project is entirely console-based and designed for educational purposes.
 - It has fixed constraints (e.g., max 4 games and 4 friends).
-- Future improvements could include dynamic memory allocation for larger scalability.
+
